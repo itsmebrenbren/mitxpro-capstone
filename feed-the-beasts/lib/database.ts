@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
 const uri = process.env.DB_URI!;
@@ -13,10 +12,10 @@ const client = new MongoClient(uri, {
 
 let dbConnection: MongoClient;
 
-export const DatabaseConnect = async () => {
+export async function DatabaseConnect() {
   if (!dbConnection) {
     dbConnection = await client.connect();
   }
-  const db = client.db('yourDatabaseName');
+  const db = client.db('FeedTheBeasts');
   return { db, client };
 };
