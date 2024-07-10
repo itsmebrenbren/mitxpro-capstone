@@ -1,60 +1,48 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+import React from "react";
+import { Restaurant } from "@/types/restaurant";
+import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
+import { Navbar } from "@/components/navbar";
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
-import DefaultLayout from "@/layouts/default";
+export async function getStaticProps() {
+  const res = await fetch('http://localhost:3000/api/restaurants');
+  const restaurants: Restaurant[] = await res.json();
 
-export default function IndexPage() {
-  return (
-    <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>Make&nbsp;</h1>
-          <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-          <br />
-          <h1 className={title()}>
-            websites regardless of your design experience.
-          </h1>
-          <h4 className={subtitle({ class: "mt-4" })}>
-            Beautiful, fast and modern React UI library.
-          </h4>
-        </div>
-
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            Documentation
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            GitHub
-          </Link>
-        </div>
-
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span>
-              Get started by editing{" "}
-              <Code color="primary">pages/index.tsx</Code>
-            </span>
-          </Snippet>
-        </div>
-      </section>
-    </DefaultLayout>
-  );
+  return {
+    props: {
+      restaurants,
+    },
+    revalidate: 10,
+  };
 }
+
+interface HomeProps {
+  restaurants: Restaurant[];
+}
+
+export default function Home({ restaurants }: HomeProps) {
+  return (
+    <>
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+      {restaurants.map((item, index) => (
+        <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
+          <CardBody className="overflow-visible p-0">
+            {/* <Image
+              shadow="sm"
+              radius="lg"
+              width="100%"
+              alt={item.title}
+              className="w-full object-cover h-[140px]"
+              src={item.img}
+            /> */}
+          </CardBody>
+          <CardFooter className="text-small justify-between">
+            <b>{item.name}</b>
+            <p>{item.type}</p>
+            <p className="text-default-500">{item.description}</p>
+          </CardFooter>
+        </Card>
+      ))}
+      </div>
+    </>
+  );
+};

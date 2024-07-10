@@ -1,29 +1,17 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Feed THE Beasts",
+  description: "Delicious eats for the hungry beasts",
   navItems: [
     {
-      label: "Home",
-      href: "/",
+      label: "Restaurants",
+      href: "/restaurants",
     },
     {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    },
+      label: "Dishes",
+      href: "/dishes",
+    }
   ],
   navMenuItems: [
     {
@@ -31,28 +19,16 @@ export const siteConfig = {
       href: "/profile",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Find Restaurants",
+      href: "/restaurants",
     },
     {
-      label: "Projects",
-      href: "/projects",
+      label: "Find Dishes",
+      href: "/dishes",
     },
     {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
+      label: "Cart",
+      href: "/cart",
     },
     {
       label: "Logout",

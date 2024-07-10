@@ -6,7 +6,7 @@ export default async function Restaurants(req: NextApiRequest, res: NextApiRespo
     const { db } = await DatabaseConnect();
     const restaurants = await db
       .collection('Restaurants')
-      .find({}, { projection: { name: 1, description: 1, _id: 0 } })
+      .find({}, { projection: { name: 1, description: 1, _id: 0, type:1 } })
       .toArray();
 
     res.status(200).json(restaurants);

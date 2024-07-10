@@ -54,7 +54,7 @@ export const Navbar = () => {
         <NavbarBrand className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-inherit">FeedTHEBeasts</p>
           </NextLink>
         </NavbarBrand>
         <div className="hidden lg:flex gap-4 justify-start ml-2">
@@ -101,7 +101,7 @@ export const Navbar = () => {
             startContent={<HeartFilledIcon className="text-danger" />}
             variant="flat"
           >
-            Sponsor
+            Bowl
           </Button>
         </NavbarItem>
       </NavbarContent>
